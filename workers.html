@@ -81,15 +81,12 @@
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  ><img
-                    src="./assets/images/avatars/profile-image.png"
-                    alt=""
+                  ><img src="./assets/images/avatars/profile-image.png" alt=""
                 /></a>
                 <div
                   class="dropdown-menu dropdown-menu-end profile-drop-menu"
                   aria-labelledby="profileDropDown"
                 >
-                  
                   <a class="dropdown-item" href="./index.html"
                     ><i data-feather="log-out"></i>Logout</a
                   >
@@ -122,24 +119,45 @@
                 class="d-flex align-items-center justify-content-between p pb-6"
               >
                 <h2 class="m-0">Workers</h2>
-                <button
-                  class="btn btn-primary btn-sm border border-3"
-                  data-toggle="modal"
-                  data-target="#newClientModal"
-                >
-                  <i data-feather="user-plus" class="align-middle md-18"></i>
-                  <span class="align-middle">Add Worker</span>
-                </button>
+                <div class="d-flex align-items-center">
+
+                  <button
+                    class="btn btn-primary btn-sm border border-3"
+                    data-toggle="modal"
+                    data-target="#newClientModal"
+                  >
+                    <i data-feather="user-plus" class="align-middle md-18"></i>
+                    <span class="align-middle">Add Worker</span>
+                  </button>
+                  <button
+                    class="btn btn-primary btn-sm border border-3"
+                    data-toggle="modal"
+                    data-target="#DeleteWorkerModal"
+                  >
+                    <i data-feather="user-x" class="align-middle md-18"></i>
+                    <span class="align-middle">Delete Worker</span>
+                  </button>
+                  <button
+                    class="btn btn-primary btn-sm border border-3"
+                    data-toggle="modal"
+                    data-target="#newOrderModal"
+                  >
+                    <i data-feather="shopping-cart" class="align-middle md-18"></i>
+                    <span class="align-middle">Add Order</span>
+                  </button>
+                </div>
               </div>
             </div>
             <div class="table-responsive">
               <table class="table m-0 bg-white">
                 <thead class="thead-light">
                   <tr>
+                    <th class="text-uppercase" style="width: 40px">No.</th>
                     <th class="text-uppercase" style="width: 200px">Name</th>
                     <th class="text-uppercase" style="width: 150px">Number</th>
                     <th class="text-uppercase" style="width: 200px">Email</th>
                     <th class="text-uppercase" style="width: 150px">Service</th>
+                    <th class="text-uppercase" style="width: 100px">Status</th>
                     <th class="text-right text-uppercase" style="width: 100px">
                       Age
                     </th>
@@ -155,7 +173,6 @@
 
     <!-- Javascripts -->
     <script src="./assets/plugins/jquery/jquery-3.4.1.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="./assets/vendor/bootstrap.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
@@ -228,7 +245,8 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label>Name</label>
-                <input required
+                <input
+                  required
                   type="text"
                   class="form-control"
                   id="name"
@@ -237,7 +255,8 @@
               </div>
               <div class="form-group col-md-6">
                 <label>Number</label>
-                <input required
+                <input
+                  required
                   type="number"
                   class="form-control"
                   id="number"
@@ -246,7 +265,8 @@
               </div>
               <div class="form-group col-md-6">
                 <label>Email</label>
-                <input required
+                <input
+                  required
                   type="email"
                   id="email"
                   class="form-control"
@@ -255,7 +275,8 @@
               </div>
               <div class="form-group col-md-6">
                 <label>Service</label>
-                <input required
+                <input
+                  required
                   type="text"
                   id="service"
                   class="form-control"
@@ -264,7 +285,8 @@
               </div>
               <div class="form-group col-md-6">
                 <label>Age</label>
-                <input required
+                <input
+                  required
                   type="number"
                   id="age"
                   class="form-control"
@@ -296,110 +318,340 @@
       </div>
     </div>
 
+    <div
+      class="modal fade"
+      id="newOrderModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="newClientModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newClientModalLabel">
+              Add a new order
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Client name</label>
+                <input
+                  required
+                  type="text"
+                  class="form-control"
+                  id="client-name"
+                  placeholder="Client name"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label>Client email</label>
+                <input
+                  required
+                  type="email"
+                  class="form-control"
+                  id="client-email"
+                  placeholder="Client email"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label>Client Number</label>
+                <input
+                  required
+                  type="number"
+                  class="form-control"
+                  id="client-number"
+                  placeholder="Client number"
+                />
+              </div>
+              <br />
+              <div class="form-group col-md-6">
+                <label>Worker email</label>
+                <input
+                  required
+                  type="email"
+                  id="worker-email"
+                  class="form-control"
+                  placeholder="Worker email"
+                />
+              </div>
+              <br />
+              <div class="form-group col-md-6">
+                <label>Service</label>
+                <input
+                  required
+                  type="text"
+                  id="service1"
+                  class="form-control"
+                  placeholder="Service"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary border"
+              data-dismiss="modal"
+            >
+              <i data-feather="x" class="md-18 align-middle"></i>
+              <span class="align-middle">Close</span>
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-primary border"
+              id="addbtn1"
+            >
+              <i data-feather="plus" class="md-18 align-middle"></i>
+              <span class="align-middle">Add</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="DeleteWorkerModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="newClientModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newClientModalLabel">
+              Delete Worker
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Worker email</label>
+                <input
+                  required
+                  type="email"
+                  id="worker-email1"
+                  class="form-control"
+                  placeholder="Worker email"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary border"
+              data-dismiss="modal"
+            >
+              <i data-feather="x" class="md-18 align-middle"></i>
+              <span class="align-middle">Close</span>
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-primary border"
+              id="addbtn2"
+            >
+              <i data-feather="delete" class="md-18 align-middle"></i>
+              <span class="align-middle">Delete</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="./assets/vendor/select2.full.min.js"></script>
 
     <script type="module">
-      var tbody = document.getElementById("tbody1");
-      function AddItemToTable(name, number, email, service, age) {
-        let trow = document.createElement("tr");
-        let td1 = document.createElement("td");
-        let td2 = document.createElement("td");
-        let td3 = document.createElement("td");
-        let td4 = document.createElement("td");
-        let td5 = document.createElement("td");
+            var tbody = document.getElementById("tbody1");
+            var WorkerNum = 0;
+            var WorkerList = [];
+            function AddItemToTable(name, number, email, service, connected, age) {
+              let trow = document.createElement("tr");
+              let td0 = document.createElement("td");
+              let td1 = document.createElement("td");
+              let td2 = document.createElement("td");
+              let td3 = document.createElement("td");
+              let td4 = document.createElement("td");
+              let td5 = document.createElement("td");
+              let td6 = document.createElement("td");
 
-        td1.innerHTML = name;
-        td2.innerHTML = number;
-        td3.innerHTML = email;
-        td4.innerHTML = service;
-        td5.innerHTML = age;
+              WorkerList.push([email]);
+              td0.innerHTML = ++WorkerNum;
+              td1.innerHTML = name;
+              td2.innerHTML = number;
+              td3.innerHTML = email;
+              td4.innerHTML = service;
+              td5.innerHTML = connected;
+              td6.innerHTML = age;
 
-        trow.appendChild(td1);
-        trow.appendChild(td2);
-        trow.appendChild(td3);
-        trow.appendChild(td4);
-        trow.appendChild(td5);
+              trow.appendChild(td0);
+              trow.appendChild(td1);
+              trow.appendChild(td2);
+              trow.appendChild(td3);
+              trow.appendChild(td4);
+              trow.appendChild(td5);
+              trow.appendChild(td6);
 
-        tbody.appendChild(trow);
-      }
+              
+              tbody.appendChild(trow);
+            }
 
-      function AddAllItemsToTable(user) {
-        tbody.innerHTML = "";
-        user.forEach((element) => {
-          AddItemToTable(
-            element.Name,
-            element.Number,
-            element.Email,
-            element.Service,
-            element.age
-          );
-        });
-      }
+            let ClientNameBox = document.getElementById("client-name");
+            let ClientEmailBox = document.getElementById("client-email");
+            let ClientNumberBox = document.getElementById("client-number");
+            let WorkerEmailBox = document.getElementById("worker-email");
+            let ServiceBox1 = document.getElementById("service1");
 
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-      import {
-        getFirestore,
-        doc,
-        getDocs,
-        addDoc,
-        onSnapshot,
-        collection,
-      } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
+            let Addbtn1 = document.getElementById("addbtn1");
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyDwOmXya7PMnByQvQSEd96zFOQ485W4LKQ",
-        authDomain: "khedmatipro.firebaseapp.com",
-        databaseURL:
-          "https://khedmatipro-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "khedmatipro",
-        storageBucket: "khedmatipro.appspot.com",
-        messagingSenderId: "889692484643",
-        appId: "1:889692484643:web:b7753e20956df89db2ed96",
-        measurementId: "G-TZP0H9CGK6",
-      };
 
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
+              
+            function AddAllItemsToTable(user) {
+              tbody.innerHTML = "";
+              user.forEach((element) => {
+                AddItemToTable(
+                  element.Name,
+                  element.Number,
+                  element.Email,
+                  element.Service,
+                  element.connected,
+                  element.age
+                );
+              });
+            }
 
-      let NameBox = document.getElementById("name");
-      let NumberBox = document.getElementById("number");
-      let EmailBox = document.getElementById("email");
-      let ServiceBox = document.getElementById("service");
-      let AgeBox = document.getElementById("age");
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+            import {
+              getFirestore,
+              doc,
+              getDocs,
+              getDoc,
+              addDoc,
+              setDoc,
+              deleteDoc,
+              onSnapshot,
+              collection,
+            } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
-      let Addbtn = document.getElementById("addbtn");
+            const firebaseConfig = {
+              apiKey: "AIzaSyDwOmXya7PMnByQvQSEd96zFOQ485W4LKQ",
+              authDomain: "khedmatipro.firebaseapp.com",
+              databaseURL:
+                "https://khedmatipro-default-rtdb.europe-west1.firebasedatabase.app",
+              projectId: "khedmatipro",
+              storageBucket: "khedmatipro.appspot.com",
+              messagingSenderId: "889692484643",
+              appId: "1:889692484643:web:b7753e20956df89db2ed96",
+              measurementId: "G-TZP0H9CGK6",
+            };
 
-      async function AddDocument_AutoID() {
-        var ref = collection(db, "workers");
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
 
-        const docRef = await addDoc(ref, {
-          Name: NameBox.value,
-          Number: NumberBox.value,
-          Email: EmailBox.value,
-          Service: ServiceBox.value,
-          Age: AgeBox.value,
-        })
-          .then(() => {
-            alert("Data added successfully.");
-            window.location.reload();
-          })
-          .catch((error) => {
-            alert("Unsuccessfull opertaion, Error " + error);
-          });
-      }
-      Addbtn.addEventListener("click", AddDocument_AutoID);
+            let NameBox = document.getElementById("name");
+            let NumberBox = document.getElementById("number");
+            let EmailBox = document.getElementById("email");
+            let ServiceBox = document.getElementById("service");
+            let AgeBox = document.getElementById("age");
 
-      async function GetAllDataOnce() {
-        const querySnapshot = await getDocs(collection(db, "workers"));
+            let Addbtn = document.getElementById("addbtn");
 
-        var workers = [];
-        querySnapshot.forEach((doc) => {
-          workers.push(doc.data());
-        });
-        AddAllItemsToTable(workers);
-      }
+            async function AddDocument_AutoID() {
+              const docRef = doc(db, "workers", EmailBox.value );
+              const data = {
+                Name: NameBox.value,
+                Number: NumberBox.value,
+                Email: EmailBox.value,
+                Service: ServiceBox.value,
+                age: AgeBox.value,
+                connected: "false",
+              };
 
-      window.onload = GetAllDataOnce;
+              setDoc(docRef, data)
+                .then(() => {
+                  alert("Data added successfully.");
+                  window.location.reload();
+                })
+                .catch((error) => {
+                  alert("Unsuccessfull opertaion, Error " + error);
+                });
+            }
+            Addbtn.addEventListener("click", AddDocument_AutoID);
+
+            async function GetAllDataOnce() {
+              const querySnapshot = await getDocs(collection(db, "workers"));
+
+              var workers = [];
+              querySnapshot.forEach((doc) => {
+                workers.push(doc.data());
+              });
+              AddAllItemsToTable(workers);
+            }
+
+            async function AddDocument_AutoID1() {
+              const p = doc(db, "workers", WorkerEmailBox.value);
+              const docSnap = await getDoc(p);
+              var data =docSnap.data();
+              console.log(docSnap.data());
+
+              var ref = collection(db, "orders");
+              
+              const docRef = await addDoc(ref, {
+                Client_Name: ClientNameBox.value,
+                Client_Email: ClientEmailBox.value,
+                Client_Number: ClientNumberBox.value,
+                Worker_Name: data.Name,
+                Worker_Email: WorkerEmailBox.value,
+                Worker_Number: data.Number,
+                Service: ServiceBox1.value,
+              })
+                .then(() => {
+                  alert("Data added successfully.");
+                  window.location.reload();
+                })
+                .catch((error) => {
+                  alert("Unsuccessfull opertaion, Error " + error);
+                });
+            }
+            Addbtn1.addEventListener("click", AddDocument_AutoID1);
+
+
+            let Worker_Email1 = document.getElementById("worker-email1");
+            let Addbtn2 = document.getElementById("addbtn2");
+
+            async function DeleteDocument(){
+              await deleteDoc(doc(db, "workers", Worker_Email1.value))
+              .then(() => {
+                  alert("Data Deleted successfully.");
+                  window.location.reload();
+                })
+                .catch((error) => {
+                  alert("Unsuccessfull opertaion, Error " + error);
+                });
+            }
+            Addbtn2.addEventListener("click", DeleteDocument);
+
+            window.onload = GetAllDataOnce;
     </script>
   </body>
 </html>
