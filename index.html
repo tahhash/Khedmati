@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Khedmati - Admin Dashboard</title>
-        <link
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Khedmati - Admin Dashboard</title>
+    <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap"
       rel="stylesheet"
     />
@@ -41,7 +41,7 @@
               </div>
               <div class="authent-text">
                 <p>Welcome to Khedmati</p>
-                <br>
+                <br />
                 <p>Please Sign-in to your account.</p>
               </div>
 
@@ -51,10 +51,10 @@
                     <input
                       type="email"
                       class="form-control"
-                      id="floatingInput"
-                      placeholder="name@example.com"
+                      id="input-field-1"
+                      placeholder="username"
                     />
-                    <label for="floatingInput">Email address</label>
+                    <label for="input-field-1">Username</label>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -62,26 +62,17 @@
                     <input
                       type="password"
                       class="form-control"
-                      id="floatingPassword"
+                      id="input-field-2"
                       placeholder="Password"
                     />
-                    <label for="floatingPassword">Password</label>
+                    <label for="input-field-2">Password</label>
                   </div>
                 </div>
-                <div class="mb-3 form-check">
-                  <input
-                    type="checkbox"
-                    class="form-check-input"
-                    id="exampleCheck1"
-                  />
-                  <label class="form-check-label" for="exampleCheck1"
-                    >Rememeber me</label
-                  >
-                </div>
+                <br>
                 <div class="d-grid">
-                  <a href="./orders.html" class="btn btn-info m-b-xs">
-                      Sign in
-                  </a>
+                  <button" class="btn btn-info m-b-xs" onclick="checkAndRedirect()">
+                    Sign in
+                  </button>
                 </div>
               </form>
             </div>
@@ -111,5 +102,24 @@
     <script src="./assets/js/app.js"></script>
     <script src="./assets/vendor/dom-factory.js"></script>
     <script src="./assets/vendor/material-design-kit.js"></script>
+    <script>
+      function checkAndRedirect() {
+        // get the input data
+        const input1 = $('#input-field-1').val();
+        const input2 = $('#input-field-2').val();
+        
+        // check if the input is correct
+        const isCorrect = input1 === 'Chiheb' && input2 === 'Chiheb123';
+        
+        if (isCorrect) {
+          // redirect to another page
+          window.location.href = "./orders.html";
+        } else {
+          // show an error message or do something else
+          alert('Please enter the correct credentials.');
+        }
+      }
+
+    </script>
   </body>
 </html>

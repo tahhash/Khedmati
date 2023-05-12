@@ -81,15 +81,12 @@
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  ><img
-                    src="./assets/images/avatars/profile-image.png"
-                    alt=""
+                  ><img src="./assets/images/avatars/profile-image.png" alt=""
                 /></a>
                 <div
                   class="dropdown-menu dropdown-menu-end profile-drop-menu"
                   aria-labelledby="profileDropDown"
                 >
-                  
                   <a class="dropdown-item" href="./index.html"
                     ><i data-feather="log-out"></i>Logout</a
                   >
@@ -110,7 +107,9 @@
             >
           </li>
           <li>
-            <a href="./users.html"><i data-feather="users"></i>Users</a>
+            <a href="./history.html"
+              ><i data-feather="hard-drive"></i>History</a
+            >
           </li>
         </ul>
       </div>
@@ -121,18 +120,29 @@
               <div
                 class="d-flex align-items-center justify-content-between p pb-6"
               >
-                <h2 class="m-0">Users</h2>
+                <h2 class="m-0">Order History</h2>
+                <div class="d-flex align-items-center">
+                  <button
+                    class="btn btn-primary btn-sm border border-3"
+                    data-toggle="modal"
+                    data-target="#DeleteOrderModal"
+                  >
+                    <i data-feather="package" class="align-middle md-18"></i>
+                    <span class="align-middle">Delete Order</span>
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="table-responsive ">
+            <div class="table-responsive">
               <table class="table table-responsive bg-white m-0">
                 <thead class="thead-light">
                   <tr>
-                    <th class="text-uppercase">Name</th>
-                    <th class="text-uppercase">Email</th>
-                    <th class="text-uppercase">Number</th>
-                    <th class="text-uppercase">Type</th>
+                    <th class="text-uppercase">Client Name</th>
+                    <th class="text-uppercase">Client Email</th>
+                    <th class="text-uppercase">Worker Name</th>
+                    <th class="text-uppercase">Worker Email</th>
                     <th class="text-uppercase">Service</th>
+                    <th class="text-uppercase">Price</th>
                   </tr>
                 </thead>
                 <tbody id="tbody1"></tbody>
@@ -165,6 +175,83 @@
     <script src="./assets/vendor/dom-factory.js"></script>
     <script src="./assets/vendor/material-design-kit.js"></script>
 
+    <div
+      class="modal fade"
+      id="DeleteOrderModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="newClientModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newClientModalLabel">Delete Worker</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Client email</label>
+                <input
+                  required
+                  type="email"
+                  id="client-email"
+                  class="form-control"
+                  placeholder="Client email"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label>Worker email</label>
+                <input
+                  required
+                  type="email"
+                  id="worker-email"
+                  class="form-control"
+                  placeholder="Worker email"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label>Service</label>
+                <input
+                  required
+                  type="email"
+                  id="service"
+                  class="form-control"
+                  placeholder="Service"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary border"
+              data-dismiss="modal"
+            >
+              <i data-feather="x" class="md-18 align-middle"></i>
+              <span class="align-middle">Close</span>
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-primary border"
+              id="addbtn2"
+            >
+              <i data-feather="delete" class="md-18 align-middle"></i>
+              <span class="align-middle">Delete</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script>
       (function () {
         "use strict";
@@ -195,25 +282,35 @@
 
     <script type="module">
       var tbody = document.getElementById("tbody1");
-      function AddItemToTable(name, email, number, service, type) {
+      function AddItemToTable(
+        clinetName,
+        clinetEmail,
+        workerName,
+        workerEmail,
+        service,
+        price
+      ) {
         let trow = document.createElement("tr");
         let td1 = document.createElement("td");
         let td2 = document.createElement("td");
         let td3 = document.createElement("td");
         let td4 = document.createElement("td");
         let td5 = document.createElement("td");
+        let td6 = document.createElement("td");
 
-        td1.innerHTML = name;
-        td2.innerHTML = email;
-        td3.innerHTML = number;
-        td4.innerHTML = service;
-        td5.innerHTML = type;
+        td1.innerHTML = clinetName;
+        td2.innerHTML = clinetEmail;
+        td3.innerHTML = workerName;
+        td4.innerHTML = workerEmail;
+        td5.innerHTML = service;
+        td6.innerHTML = price + " DA";
 
         trow.appendChild(td1);
         trow.appendChild(td2);
         trow.appendChild(td3);
         trow.appendChild(td4);
         trow.appendChild(td5);
+        trow.appendChild(td6);
 
         tbody.appendChild(trow);
       }
@@ -222,11 +319,12 @@
         tbody.innerHTML = "";
         user.forEach((element) => {
           AddItemToTable(
-            element.Name,
-            element.Email,
-            element.Number,
-            element.Type,
-            element.Service
+            element.Client_Name,
+            element.Client_Email,
+            element.Worker_Name,
+            element.Worker_Email,
+            element.Service,
+            element.Price
           );
         });
       }
@@ -237,6 +335,9 @@
         doc,
         getDocs,
         onSnapshot,
+        deleteDoc,
+        query,
+        where,
         collection,
       } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
@@ -256,14 +357,58 @@
       const db = getFirestore(app);
 
       async function GetAllDataOnce() {
-        const querySnapshot = await getDocs(collection(db, "users"));
+        try {
+          const ordersRef = collection(db, "orders");
+          const q = query(ordersRef, where("Price", "!=", ""));
+          const snapshot = await getDocs(q);
+          const orders = [];
 
-        var users = [];
-        querySnapshot.forEach((doc) => {
-          users.push(doc.data());
-        });
-        AddAllItemsToTable(users);
+          snapshot.forEach((doc) => {
+            orders.push(doc.data());
+          });
+          AddAllItemsToTable(orders);
+        } catch (error) {
+          console.log("Error getting orders:", error);
+          return [];
+        }
       }
+      let Client_Email = document.getElementById("client-email").value;
+      let Worker_Email = document.getElementById("worker-email").value;
+      let Service = document.getElementById("service").value;
+      let Addbtn2 = document.getElementById("addbtn2");
+
+      function deleteOrdersWithCriteria() {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const clientEmail = document.getElementById("client-email").value;
+            const workerEmail = document.getElementById("worker-email").value;
+            const service = document.getElementById("service").value;
+
+            const ordersRef = collection(db, "orders");
+            const q = query(
+              ordersRef,
+              where("Client_Email", "==", clientEmail),
+              where("Worker_Email", "==", workerEmail),
+              where("Service", "==", service)
+            );
+            const snapshot = await getDocs(q);
+
+            snapshot.forEach(async (doc) => {
+              await deleteDoc(doc.ref);
+              console.log(`Document with ID ${doc.id} deleted successfully.`);
+            });
+
+            alert("Data added successfully.");
+            window.location.reload();
+            resolve();
+          } catch (error) {
+            console.log("Error deleting orders:", error);
+            reject(error);
+          }
+        });
+      }
+
+      Addbtn2.addEventListener("click", deleteOrdersWithCriteria);
 
       window.onload = GetAllDataOnce;
     </script>
