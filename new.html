@@ -125,17 +125,7 @@
               <div
                 class="d-flex align-items-center justify-content-between p pb-6"
               >
-                <h2 class="m-0">Order History</h2>
-                <div class="d-flex align-items-center">
-                  <button
-                    class="btn btn-primary btn-sm border border-3"
-                    data-toggle="modal"
-                    data-target="#DeleteOrderModal"
-                  >
-                    <i data-feather="package" class="align-middle md-18"></i>
-                    <span class="align-middle">Delete Order</span>
-                  </button>
-                </div>
+                <h2 class="m-0">New orders</h2>
               </div>
             </div>
             <div class="table-responsive">
@@ -144,10 +134,8 @@
                   <tr>
                     <th class="text-uppercase">Client Name</th>
                     <th class="text-uppercase">Client Email</th>
-                    <th class="text-uppercase">Worker Name</th>
-                    <th class="text-uppercase">Worker Email</th>
+                    <th class="text-uppercase">Client Number</th>
                     <th class="text-uppercase">Service</th>
-                    <th class="text-uppercase">Price</th>
                   </tr>
                 </thead>
                 <tbody id="tbody1"></tbody>
@@ -180,142 +168,26 @@
     <script src="./assets/vendor/dom-factory.js"></script>
     <script src="./assets/vendor/material-design-kit.js"></script>
 
-    <div
-      class="modal fade"
-      id="DeleteOrderModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="newClientModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="newClientModalLabel">Delete Worker</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Client email</label>
-                <input
-                  required
-                  type="email"
-                  id="client-email"
-                  class="form-control"
-                  placeholder="Client email"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label>Worker email</label>
-                <input
-                  required
-                  type="email"
-                  id="worker-email"
-                  class="form-control"
-                  placeholder="Worker email"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label>Service</label>
-                <input
-                  required
-                  type="email"
-                  id="service"
-                  class="form-control"
-                  placeholder="Service"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary border"
-              data-dismiss="modal"
-            >
-              <i data-feather="x" class="md-18 align-middle"></i>
-              <span class="align-middle">Close</span>
-            </button>
-            <button
-              data-dismiss="modal"
-              type="button"
-              class="btn btn-primary border"
-              id="addbtn2"
-            >
-              <i data-feather="delete" class="md-18 align-middle"></i>
-              <span class="align-middle">Delete</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script>
-      (function () {
-        "use strict";
-
-        domFactory.handler.autoInit();
-
-        var sidebarToggle = Array.prototype.slice.call(
-          document.querySelectorAll('[data-toggle="sidebar"]')
-        );
-
-        sidebarToggle.forEach(function (toggle) {
-          toggle.addEventListener("click", function (e) {
-            var selector =
-              e.currentTarget.getAttribute("data-target") || "#default-drawer";
-            var drawer = document.querySelector(selector);
-            if (drawer) {
-              drawer.mdkDrawer.toggle();
-            }
-          });
-        });
-
-        window.top.location.hostname !== window.location.hostname &&
-          (window.top.location = window.location);
-      })();
-    </script>
-
-    <script src="./assets/vendor/select2.full.min.js"></script>
-
     <script type="module">
+
       var tbody = document.getElementById("tbody1");
-      function AddItemToTable(
-        clinetName,
-        clinetEmail,
-        workerName,
-        workerEmail,
-        service,
-        price
-      ) {
+
+      function AddItemToTable(clinetName, clinetEmail, clinetNumber, service) {
         let trow = document.createElement("tr");
         let td1 = document.createElement("td");
         let td2 = document.createElement("td");
         let td3 = document.createElement("td");
         let td4 = document.createElement("td");
-        let td5 = document.createElement("td");
-        let td6 = document.createElement("td");
 
         td1.innerHTML = clinetName;
         td2.innerHTML = clinetEmail;
-        td3.innerHTML = workerName;
-        td4.innerHTML = workerEmail;
-        td5.innerHTML = service;
-        td6.innerHTML = price + " DA";
+        td3.innerHTML = clinetNumber;
+        td4.innerHTML = service;
 
         trow.appendChild(td1);
         trow.appendChild(td2);
         trow.appendChild(td3);
         trow.appendChild(td4);
-        trow.appendChild(td5);
-        trow.appendChild(td6);
 
         tbody.appendChild(trow);
       }
@@ -324,12 +196,10 @@
         tbody.innerHTML = "";
         user.forEach((element) => {
           AddItemToTable(
-            element.Client_Name,
-            element.Client_Email,
-            element.Worker_Name,
-            element.Worker_Email,
-            element.Service,
-            element.Price
+            element.CLIENT_NAME,
+            element.CLIENT_EMAIL,
+            element.CLIENT_NUMBER,
+            element.SERVICE
           );
         });
       }
@@ -362,58 +232,14 @@
       const db = getFirestore(app);
 
       async function GetAllDataOnce() {
-        try {
-          const ordersRef = collection(db, "orders");
-          const q = query(ordersRef, where("Price", "!=", ""));
-          const snapshot = await getDocs(q);
-          const orders = [];
+        const querySnapshot = await getDocs(collection(db, "new"));
 
-          snapshot.forEach((doc) => {
-            orders.push(doc.data());
-          });
-          AddAllItemsToTable(orders);
-        } catch (error) {
-          console.log("Error getting orders:", error);
-          return [];
-        }
-      }
-      let Client_Email = document.getElementById("client-email").value;
-      let Worker_Email = document.getElementById("worker-email").value;
-      let Service = document.getElementById("service").value;
-      let Addbtn2 = document.getElementById("addbtn2");
-
-      function deleteOrdersWithCriteria() {
-        return new Promise(async (resolve, reject) => {
-          try {
-            const clientEmail = document.getElementById("client-email").value;
-            const workerEmail = document.getElementById("worker-email").value;
-            const service = document.getElementById("service").value;
-
-            const ordersRef = collection(db, "orders");
-            const q = query(
-              ordersRef,
-              where("Client_Email", "==", clientEmail),
-              where("Worker_Email", "==", workerEmail),
-              where("Service", "==", service)
-            );
-            const snapshot = await getDocs(q);
-
-            snapshot.forEach(async (doc) => {
-              await deleteDoc(doc.ref);
-              console.log(`Document with ID ${doc.id} deleted successfully.`);
-            });
-
-            alert("Data added successfully.");
-            window.location.reload();
-            resolve();
-          } catch (error) {
-            console.log("Error deleting orders:", error);
-            reject(error);
-          }
+        var orders = [];
+        querySnapshot.forEach((doc) => {
+          orders.push(doc.data());
         });
+        AddAllItemsToTable(orders);
       }
-
-      Addbtn2.addEventListener("click", deleteOrdersWithCriteria);
 
       window.onload = GetAllDataOnce;
     </script>
