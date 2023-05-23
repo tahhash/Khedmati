@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Khedmati - Admin Dashboard</title>
+    <title>خدمتي - لوحة التحكم الإدارية</title>
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap"
       rel="stylesheet"
@@ -91,7 +91,7 @@
                 >
                   
                   <a class="dropdown-item" href="./index.html"
-                    ><i data-feather="log-out"></i>Logout</a
+                    ><i data-feather="log-out"></i>تسجيل الخروج</a
                   >
                 </div>
               </li>
@@ -102,21 +102,21 @@
       <div class="page-sidebar">
         <ul class="list-unstyled accordion-menu">
           <li>
-            <a href="./orders.html"><i data-feather="package"></i>Orders</a>
+            <a href="./orders.html"><i data-feather="package"></i>الطلبات</a>
           </li>
           <li>
             <a href="./workers.html"
-              ><i data-feather="user-check"></i>Workers</a
+              ><i data-feather="user-check"></i>التقنيين</a
             >
           </li>
           <li>
             <a href="./history.html"
-              ><i data-feather="hard-drive"></i>History</a
+              ><i data-feather="hard-drive"></i>الطلبات المنجزة</a
             >
           </li>
           <li>
             <a href="./new.html"
-              ><i data-feather="folder-plus"></i>New Orders</a
+              ><i data-feather="folder-plus"></i>الطلبات الجديدة</a
             >
           </li>
         </ul>
@@ -128,14 +128,14 @@
               <div
                 class="d-flex align-items-center justify-content-between p pb-6"
               >
-                <h2 class="m-0">Orders</h2>
+                <h2 class="m-0">الطلبات</h2>
                 <button
                   class="btn btn-primary btn-sm border border-3"
                   data-toggle="modal"
                   data-target="#newClientModal"
                 >
                   <i data-feather="user-plus" class="align-middle md-18"></i>
-                  <span class="align-middle">Add Order</span>
+                  <span class="align-middle">إضافة طلب</span>
                 </button>
               </div>
             </div>
@@ -143,13 +143,13 @@
               <table class="table bg-white m-0">
                 <thead class="thead-light">
                   <tr>
-                    <th class="text-right text-uppercase">Client Name</th>
-                    <th class="text-right text-uppercase">Client Email</th>
-                    <th class="text-right text-uppercase">Client Number</th>
-                    <th class="text-right text-uppercase">Worker Name</th>
-                    <th class="text-right text-uppercase">Worker Email</th>
-                    <th class="text-right text-uppercase">Worker Number</th>
-                    <th class="text-right text-uppercase">Service</th>
+                    <th class="text-right text-uppercase">اسم الزبون</th>
+                    <th class="text-right text-uppercase">البريد الإلكتروني للزبون</th>
+                    <th class="text-right text-uppercase">رقم الزبون</th>
+                    <th class="text-right text-uppercase">اسم التقني</th>
+                    <th class="text-right text-uppercase">البريد الإلكتروني للتقني</th>
+                    <th class="text-right text-uppercase">رقم التقني</th>
+                    <th class="text-right text-uppercase">الخدمة</th>
                   </tr>
                 </thead>
                 <tbody id="tbody1"></tbody>
@@ -220,7 +220,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="newClientModalLabel">
-              Add a new order
+              إضافة طلب
             </h5>
             <button
               type="button"
@@ -234,68 +234,68 @@
           <div class="modal-body">
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label>Client name</label>
+                <label>اسم الزبون</label>
                 <input required
                   type="text"
                   class="form-control"
                   id="client-name"
-                  placeholder="Client name"
+                  placeholder="اسم الزبون"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label>Client email</label>
+                <label>البريد الإلكتروني للزبون</label>
                 <input required
                   type="email"
                   class="form-control"
                   id="client-email"
-                  placeholder="Client email"
+                  placeholder="البريد الإلكتروني للزبون"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label>Client Number</label>
+                <label>رقم الزبون</label>
                 <input required
                   type="number"
                   class="form-control"
                   id="client-number"
-                  placeholder="Client number"
+                  placeholder="رقم الزبون"
                 />
               </div>
               <br />
               <div class="form-group col-md-6">
-                <label>Worker name</label>
+                <label>اسم التقني</label>
                 <input required
                   type="text"
                   id="worker-name"
                   class="form-control"
-                  placeholder="Worker name"
+                  placeholder="اسم التقني"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label>Worker email</label>
+                <label>البريد الإلكتروني للتقني</label>
                 <input required
                   type="email"
                   id="worker-email"
                   class="form-control"
-                  placeholder="Worker email"
+                  placeholder="البريد الإلكتروني للتقني"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label>Worker number</label>
+                <label>رقم التقني</label>
                 <input required
                   type="text"
                   id="worker-number"
                   class="form-control"
-                  placeholder="Worker number"
+                  placeholder="رقم التقني"
                 />
               </div>
               <br />
               <div class="form-group col-md-6">
-                <label>Service</label>
+                <label>الخدمة</label>
                 <input required
                   type="text"
                   id="service"
                   class="form-control"
-                  placeholder="Service"
+                  placeholder="الخدمة"
                 />
               </div>
             </div>
@@ -316,7 +316,7 @@
               id="addbtn"
             >
               <i data-feather="plus" class="md-18 align-middle"></i>
-              <span class="align-middle">Add</span>
+              <span class="align-middle">إغلاق</span>
             </button>
           </div>
         </div>

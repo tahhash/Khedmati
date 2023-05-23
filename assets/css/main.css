@@ -925,7 +925,7 @@ body.sidebar-hidden .page-header .navbar #navbarNav #leftNav > li > a#sidebar-to
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     transform: scale(1, 1);
-    transform-origin: left;
+    transform-origin: right;
     overflow: visible;
 }
 
@@ -995,7 +995,7 @@ body.sidebar-hidden .page-header .navbar #navbarNav #leftNav > li > a#sidebar-to
 }
 
 .page-sidebar .accordion-menu li a .dropdown-icon {
-    float: right;
+    float: left;
     vertical-align: middle;
     line-height: 44px;
     font-size: 10px;

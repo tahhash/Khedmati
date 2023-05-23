@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Khedmati - Admin Dashboard</title>
+    <title>خدمتي - لوحة التحكم الإدارية</title>
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap"
       rel="stylesheet"
@@ -81,14 +81,17 @@
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  ><img src="./assets/images/avatars/profile-image.png" alt=""
+                  ><img
+                    src="./assets/images/avatars/profile-image.png"
+                    alt=""
                 /></a>
                 <div
                   class="dropdown-menu dropdown-menu-end profile-drop-menu"
                   aria-labelledby="profileDropDown"
                 >
+                  
                   <a class="dropdown-item" href="./index.html"
-                    ><i data-feather="log-out"></i>Logout</a
+                    ><i data-feather="log-out"></i>تسجيل الخروج</a
                   >
                 </div>
               </li>
@@ -99,21 +102,21 @@
       <div class="page-sidebar">
         <ul class="list-unstyled accordion-menu">
           <li>
-            <a href="./orders.html"><i data-feather="package"></i>Orders</a>
+            <a href="./orders.html"><i data-feather="package"></i>الطلبات</a>
           </li>
           <li>
             <a href="./workers.html"
-              ><i data-feather="user-check"></i>Workers</a
+              ><i data-feather="user-check"></i>التقنيين</a
             >
           </li>
           <li>
             <a href="./history.html"
-              ><i data-feather="hard-drive"></i>History</a
+              ><i data-feather="hard-drive"></i>الطلبات المنجزة</a
             >
           </li>
           <li>
             <a href="./new.html"
-              ><i data-feather="folder-plus"></i>New Orders</a
+              ><i data-feather="folder-plus"></i>الطلبات الجديدة</a
             >
           </li>
         </ul>
@@ -125,17 +128,17 @@
               <div
                 class="d-flex align-items-center justify-content-between p pb-6"
               >
-                <h2 class="m-0">New orders</h2>
+                <h2 class="m-0">طلبات جديدة</h2>
               </div>
             </div>
             <div class="table-responsive">
               <table class="table table-responsive bg-white m-0">
                 <thead class="thead-light">
                   <tr>
-                    <th class="text-uppercase">Client Name</th>
-                    <th class="text-uppercase">Client Email</th>
-                    <th class="text-uppercase">Client Number</th>
-                    <th class="text-uppercase">Service</th>
+                    <th class="text-uppercase">اسم الزبون</th>
+                    <th class="text-uppercase">بريد الزبون</th>
+                    <th class="text-uppercase">رقم الزبون</th>
+                    <th class="text-uppercase">الخدمة</th>
                   </tr>
                 </thead>
                 <tbody id="tbody1"></tbody>

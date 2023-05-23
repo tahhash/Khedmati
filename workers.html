@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Khedmati - Admin Dashboard</title>
+    <title>خدمتي - لوحة التحكم الإدارية</title>
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap"
       rel="stylesheet"
@@ -81,14 +81,17 @@
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
-                  ><img src="./assets/images/avatars/profile-image.png" alt=""
+                  ><img
+                    src="./assets/images/avatars/profile-image.png"
+                    alt=""
                 /></a>
                 <div
                   class="dropdown-menu dropdown-menu-end profile-drop-menu"
                   aria-labelledby="profileDropDown"
                 >
+                  
                   <a class="dropdown-item" href="./index.html"
-                    ><i data-feather="log-out"></i>Logout</a
+                    ><i data-feather="log-out"></i>تسجيل الخروج</a
                   >
                 </div>
               </li>
@@ -99,21 +102,21 @@
       <div class="page-sidebar">
         <ul class="list-unstyled accordion-menu">
           <li>
-            <a href="./orders.html"><i data-feather="package"></i>Orders</a>
+            <a href="./orders.html"><i data-feather="package"></i>الطلبات</a>
           </li>
           <li>
             <a href="./workers.html"
-              ><i data-feather="user-check"></i>Workers</a
+              ><i data-feather="user-check"></i>التقنيين</a
             >
           </li>
           <li>
             <a href="./history.html"
-              ><i data-feather="hard-drive"></i>History</a
+              ><i data-feather="hard-drive"></i>الطلبات المنجزة</a
             >
           </li>
           <li>
             <a href="./new.html"
-              ><i data-feather="folder-plus"></i>New Orders</a
+              ><i data-feather="folder-plus"></i>الطلبات الجديدة</a
             >
           </li>
         </ul>
@@ -125,7 +128,7 @@
               <div
                 class="d-flex align-items-center justify-content-between p pb-6"
               >
-                <h2 class="m-0">Workers</h2>
+                <h2 class="m-0">التقنيين</h2>
                 <div class="d-flex align-items-center">
                   <button
                     class="btn btn-primary btn-sm border border-3"
@@ -133,7 +136,7 @@
                     data-target="#newClientModal"
                   >
                     <i data-feather="user-plus" class="align-middle md-18"></i>
-                    <span class="align-middle">Add Worker</span>
+                    <span class="align-middle">إضافة عامل</span>
                   </button>
                   <button
                     class="btn btn-primary btn-sm border border-3"
@@ -141,7 +144,7 @@
                     data-target="#DeleteWorkerModal"
                   >
                     <i data-feather="user-x" class="align-middle md-18"></i>
-                    <span class="align-middle">Delete Worker</span>
+                    <span class="align-middle">حذف عامل</span>
                   </button>
                   <button
                     class="btn btn-primary btn-sm border border-3"
@@ -152,7 +155,7 @@
                       data-feather="shopping-cart"
                       class="align-middle md-18"
                     ></i>
-                    <span class="align-middle">Add Order</span>
+                    <span class="align-middle">إضافة طلب</span>
                   </button>
                 </div>
               </div>
@@ -161,14 +164,14 @@
               <table class="table m-0 bg-white">
                 <thead class="thead-light">
                   <tr>
-                    <th class="text-uppercase" style="width: 40px">No.</th>
-                    <th class="text-uppercase" style="width: 200px">Name</th>
-                    <th class="text-uppercase" style="width: 150px">Number</th>
-                    <th class="text-uppercase" style="width: 200px">Email</th>
-                    <th class="text-uppercase" style="width: 150px">Service</th>
-                    <th class="text-uppercase" style="width: 100px">Status</th>
+                    <th class="text-uppercase" style="width: 40px">رقم</th>
+                    <th class="text-uppercase" style="width: 200px">الاسم</th>
+                    <th class="text-uppercase" style="width: 150px">الرقم </th>
+                    <th class="text-uppercase" style="width: 200px">البريد الإلكتروني</th>
+                    <th class="text-uppercase" style="width: 150px">الخدمة</th>
+                    <th class="text-uppercase" style="width: 100px">الحالة </th>
                     <th class="text-right text-uppercase" style="width: 100px">
-                      Age
+                      العمر
                     </th>
                   </tr>
                 </thead>
@@ -239,7 +242,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="newClientModalLabel">
-              Add a new worker
+              إضافة عامل
             </h5>
             <button
               type="button"
@@ -253,53 +256,53 @@
           <div class="modal-body">
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label>Name</label>
+                <label>الاسم</label>
                 <input
                   required
                   type="text"
                   class="form-control"
                   id="name"
-                  placeholder="Name"
+                  placeholder="الاسم"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label>Number</label>
+                <label>الرقم</label>
                 <input
                   required
                   type="number"
                   class="form-control"
                   id="number"
-                  placeholder="number"
+                  placeholder="الرقم"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label>Email</label>
+                <label>البريد الإلكتروني</label>
                 <input
                   required
                   type="email"
                   id="email"
                   class="form-control"
-                  placeholder="Email"
+                  placeholder="البريد الإلكتروني"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label>Service</label>
+                <label>الخدمة</label>
                 <input
                   required
                   type="text"
                   id="service"
                   class="form-control"
-                  placeholder="Service"
+                  placeholder="الخدمة"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label>Age</label>
+                <label>العمر</label>
                 <input
                   required
                   type="number"
                   id="age"
                   class="form-control"
-                  placeholder="Age"
+                  placeholder="العمر"
                 />
               </div>
             </div>
@@ -311,7 +314,7 @@
               data-dismiss="modal"
             >
               <i data-feather="x" class="md-18 align-middle"></i>
-              <span class="align-middle">Close</span>
+              <span class="align-middle">إغلاق</span>
             </button>
             <button
               data-dismiss="modal"
@@ -320,7 +323,7 @@
               id="addbtn"
             >
               <i data-feather="plus" class="md-18 align-middle"></i>
-              <span class="align-middle">Add</span>
+              <span class="align-middle">إضافة</span>
             </button>
           </div>
         </div>
@@ -339,7 +342,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="newClientModalLabel">
-              Add a new order
+              إضافة طلب جديد
             </h5>
             <button
               type="button"
@@ -353,55 +356,55 @@
           <div class="modal-body">
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label>Client name</label>
+                <label>اسم الزبون</label>
                 <input
                   required
                   type="text"
                   class="form-control"
                   id="client-name"
-                  placeholder="Client name"
+                  placeholder="اسم الزبون"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label>Client email</label>
+                <label>بريد الزبون</label>
                 <input
                   required
                   type="email"
                   class="form-control"
                   id="client-email"
-                  placeholder="Client email"
+                  placeholder="بريد الزبون"
                 />
               </div>
               <div class="form-group col-md-6">
-                <label>Client Number</label>
+                <label>رقم الزبون</label>
                 <input
                   required
                   type="number"
                   class="form-control"
                   id="client-number"
-                  placeholder="Client number"
+                  placeholder="رقم الزبون"
                 />
               </div>
               <br />
               <div class="form-group col-md-6">
-                <label>Worker email</label>
+                <label>بريد العامل</label>
                 <input
                   required
                   type="email"
                   id="worker-email"
                   class="form-control"
-                  placeholder="Worker email"
+                  placeholder="بريد العامل"
                 />
               </div>
               <br />
               <div class="form-group col-md-6">
-                <label>Service</label>
+                <label>الخدمة</label>
                 <input
                   required
                   type="text"
                   id="service1"
                   class="form-control"
-                  placeholder="Service"
+                  placeholder="الخدمة"
                 />
               </div>
             </div>
@@ -413,7 +416,7 @@
               data-dismiss="modal"
             >
               <i data-feather="x" class="md-18 align-middle"></i>
-              <span class="align-middle">Close</span>
+              <span class="align-middle">إغلاق</span>
             </button>
             <button
               data-dismiss="modal"
@@ -422,7 +425,7 @@
               id="addbtn1"
             >
               <i data-feather="plus" class="md-18 align-middle"></i>
-              <span class="align-middle">Add</span>
+              <span class="align-middle">إضافة</span>
             </button>
           </div>
         </div>
@@ -439,7 +442,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="newClientModalLabel">Delete Worker</h5>
+            <h5 class="modal-title" id="newClientModalLabel">حذف العامل</h5>
             <button
               type="button"
               class="close"
@@ -452,13 +455,13 @@
           <div class="modal-body">
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label>Worker email</label>
+                <label>بريد العامل</label>
                 <input
                   required
                   type="email"
                   id="worker-email1"
                   class="form-control"
-                  placeholder="Worker email"
+                  placeholder="بريد العامل"
                 />
               </div>
             </div>
@@ -470,7 +473,7 @@
               data-dismiss="modal"
             >
               <i data-feather="x" class="md-18 align-middle"></i>
-              <span class="align-middle">Close</span>
+              <span class="align-middle">إغلاق</span>
             </button>
             <button
               data-dismiss="modal"
@@ -479,7 +482,7 @@
               id="addbtn2"
             >
               <i data-feather="delete" class="md-18 align-middle"></i>
-              <span class="align-middle">Delete</span>
+              <span class="align-middle">إضافة</span>
             </button>
           </div>
         </div>
