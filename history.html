@@ -102,9 +102,6 @@
       <div class="page-sidebar">
         <ul class="list-unstyled accordion-menu">
           <li>
-            <a href="./orders.html"><i data-feather="package"></i>الطلبات</a>
-          </li>
-          <li>
             <a href="./workers.html"
               ><i data-feather="user-check"></i>قائمة التقنيين</a
             >
@@ -147,6 +144,7 @@
                   <tr>
                     <th class="text-uppercase">اسم الزبون</th>
                     <th class="text-uppercase">بريد الزبون</th>
+                    <th class="text-uppercase">رقم الزبون</th>
                     <th class="text-uppercase">اسم العامل</th>
                     <th class="text-uppercase">بريد العامل</th>
                     <th class="text-uppercase">الخدمات</th>
@@ -293,6 +291,7 @@
       function AddItemToTable(
         clinetName,
         clinetEmail,
+        clinetNumber,
         workerName,
         workerEmail,
         service,
@@ -305,13 +304,15 @@
         let td4 = document.createElement("td");
         let td5 = document.createElement("td");
         let td6 = document.createElement("td");
+        let td7 = document.createElement("td");
 
         td1.innerHTML = clinetName;
         td2.innerHTML = clinetEmail;
-        td3.innerHTML = workerName;
-        td4.innerHTML = workerEmail;
-        td5.innerHTML = service;
-        td6.innerHTML = price + " DA";
+        td3.innerHTML = clinetNumber;
+        td4.innerHTML = workerName;
+        td5.innerHTML = workerEmail;
+        td6.innerHTML = service;
+        td7.innerHTML = price + " DA";
 
         trow.appendChild(td1);
         trow.appendChild(td2);
@@ -319,6 +320,7 @@
         trow.appendChild(td4);
         trow.appendChild(td5);
         trow.appendChild(td6);
+        trow.appendChild(td7);
 
         tbody.appendChild(trow);
       }
@@ -329,6 +331,7 @@
           AddItemToTable(
             element.Client_Name,
             element.Client_Email,
+            element.Client_Number,
             element.Worker_Name,
             element.Worker_Email,
             element.Service,

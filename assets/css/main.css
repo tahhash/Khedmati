@@ -654,7 +654,7 @@ h6 {
 /* Page Header */
 
 .page-header {
-    background: #fff;
+    background: #ff0000;
     border-radius: 15px;
     box-shadow: 0px 1px 3px 0px rgba(54,74,99,0.05);
     position: fixed;
@@ -915,7 +915,7 @@ body.sidebar-hidden .page-header .navbar #navbarNav #leftNav > li > a#sidebar-to
 .page-sidebar {
     position: fixed;
     height: calc(100% - 148px);
-    background: #fff;
+    background: #1f3ae7;
     box-shadow: 0px 1px 3px 0px rgba(54,74,99,0.05);
     top: 118px;
     border-radius: 15px;
@@ -954,7 +954,7 @@ body.sidebar-hidden .page-header .navbar #navbarNav #leftNav > li > a#sidebar-to
 
 .page-sidebar .accordion-menu > li.active-page > a {
     border-radius: 10px;
-    background-color: #F3F6F9;
+    background-color: #007ffd;
     color: #7888FC;
     font-weight: 500;
 }
