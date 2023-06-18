@@ -102,21 +102,23 @@
       <div class="page-sidebar">
         <ul class="list-unstyled accordion-menu">
           <li>
-            <a href="./orders.html"><i data-feather="package"></i>الطلبات</a>
-          </li>
-          <li>
             <a href="./workers.html"
               ><i data-feather="user-check"></i>قائمة التقنيين</a
             >
           </li>
           <li>
-            <a href="./history.html"
-              ><i data-feather="hard-drive"></i>الطلبات المنجزة</a
+            <a href="./new.html"
+              ><i data-feather="folder-plus"></i>الطلبات الواردة</a
             >
           </li>
           <li>
-            <a href="./new.html"
-              ><i data-feather="folder-plus"></i>الطلبات الواردة</a
+            <a href="./orders.html"
+              ><i data-feather="hard-drive"></i>الطلبات قيد الإنجاز</a
+            >
+          </li>
+          <li>
+            <a href="./history.html"
+              ><i data-feather="hard-drive"></i>الطلبات المنجزة</a
             >
           </li>
         </ul>
@@ -128,7 +130,7 @@
               <div
                 class="d-flex align-items-center justify-content-between p pb-6"
               >
-                <h2 class="m-0">الطلبات</h2>
+                <h2 class="m-0">الطلبات قيد الإنجاز</h2>
                 <button
                   class="btn btn-primary btn-sm border border-3"
                   data-toggle="modal"
@@ -383,6 +385,8 @@
         doc,
         getDocs,
         addDoc,
+        query,
+        where,
         onSnapshot,
         collection,
       } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
@@ -436,13 +440,20 @@
       Addbtn.addEventListener("click", AddDocument_AutoID);
 
       async function GetAllDataOnce() {
-        const querySnapshot = await getDocs(collection(db, "orders"));
+        try {
+          const ordersRef = collection(db, "orders");
+          const q = query(ordersRef, where("Price", "==", null));
+          const snapshot = await getDocs(q);
+          const orders = [];
 
-        var orders = [];
-        querySnapshot.forEach((doc) => {
-          orders.push(doc.data());
-        });
-        AddAllItemsToTable(orders);
+          snapshot.forEach((doc) => {
+            orders.push(doc.data());
+          });
+          AddAllItemsToTable(orders);
+        } catch (error) {
+          console.log("Error getting orders:", error);
+          return [];
+        }
       }
 
       window.onload = GetAllDataOnce;
