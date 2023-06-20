@@ -118,6 +118,11 @@
               ><i data-feather="hard-drive"></i>الطلبات المنجزة</a
             >
           </li>
+          <li>
+            <a href="./none.html"
+              ><i data-feather="folder-minus"></i>الطلبات الملغات</a
+            >
+          </li>
         </ul>
       </div>
       <div class="page-content">
@@ -128,24 +133,7 @@
                 class="d-flex align-items-center justify-content-between p pb-6"
               >
                 <h2 class="m-0">سجل الطلبات</h2>
-                <div class="d-flex align-items-center">
-                  <button
-                    class="btn btn-primary btn-sm border border-3"
-                    data-toggle="modal"
-                    data-target="#DeleteOrderModal"
-                  >
-                    <i data-feather="package" class="align-middle md-18"></i>
-                    <span class="align-middle">حذف الطلب</span>
-                  </button>
-                  <button
-                    class="btn btn-primary btn-sm border border-3"
-                    data-toggle="modal"
-                    data-target="#Send"
-                  >
-                    <i data-feather="send" class="align-middle md-18"></i>
-                    <span class="align-middle">إرسال الفاتورة</span>
-                  </button>
-                </div>
+                
               </div>
             </div>
             <div class="table-responsive">
@@ -488,7 +476,7 @@
       async function GetAllDataOnce() {
         try {
           const ordersRef = collection(db, "orders");
-          const q = query(ordersRef, where("Price", "!=", ""));
+          const q = query(ordersRef, where("Price", ">", 200));
           const snapshot = await getDocs(q);
           const orders = [];
 

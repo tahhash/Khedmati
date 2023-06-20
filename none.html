@@ -44,7 +44,7 @@
             </ul>
           </div>
           <div class="logo">
-            <a class="navbar-brand" href="./orders.html"></a>
+            <a class="navbar-brand" href="./workers.html"></a>
           </div>
           <div class="" id="headerNav">
             <ul class="navbar-nav">
@@ -132,32 +132,21 @@
               <div
                 class="d-flex align-items-center justify-content-between p pb-6"
               >
-                <h2 class="m-0">الطلبات قيد الإنجاز</h2>
-                <button
-                  class="btn btn-primary btn-sm border border-3"
-                  data-toggle="modal"
-                  data-target="#newClientModal"
-                >
-                  <i data-feather="user-plus" class="align-middle md-18"></i>
-                  <span class="align-middle">إضافة طلب</span>
-                </button>
+                <h2 class="m-0">الطلبات الملغات</h2>
+                
               </div>
             </div>
             <div class="table-responsive">
-              <table class="table bg-white m-0">
+              <table class="table table-responsive bg-white m-0">
                 <thead class="thead-light">
                   <tr>
-                    <th class="text-right text-uppercase">اسم و لقب الزبون</th>
-                    <th class="text-right text-uppercase">رقم الزبون</th>
-                    <th class="text-right text-uppercase">
-                      البريد الإلكتروني للزبون
-                    </th>
-                    <th class="text-right text-uppercase">اسم و لقب التقني</th>
-                    <th class="text-right text-uppercase">
-                      البريد الإلكتروني للتقني
-                    </th>
-                    <th class="text-right text-uppercase">رقم التقني</th>
-                    <th class="text-right text-uppercase">الخدمات</th>
+                    <th class="text-uppercase">اسم الزبون</th>
+                    <th class="text-uppercase">بريد الزبون</th>
+                    <th class="text-uppercase">رقم الزبون</th>
+                    <th class="text-uppercase">اسم العامل</th>
+                    <th class="text-uppercase">بريد العامل</th>
+                    <th class="text-uppercase">الخدمات</th>
+                    <th class="text-uppercase">السعر</th>
                   </tr>
                 </thead>
                 <tbody id="tbody1"></tbody>
@@ -182,6 +171,34 @@
     <script src="./assets/vendor/moment.min.js"></script>
     <script src="./assets/vendor/dateformat.js"></script>
     <script src="./assets/vendor/bootstrap-datepicker.min.js"></script>
+    <script
+      type="text/javascript"
+      src="mehnatitebessa@gmail.com"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("mQByYeE8YIkEwjiaO");
+      })();
+      function SendEmail() {
+        const serviceID = "service_a37lzsn";
+        const templateID = "template_phj7g0y";
+        var params = {
+          client: document.getElementById("client-email").value,
+          service: document.getElementById("service").value,
+          price: document.getElementById("price").value,
+        };
+        emailjs
+          .send(serviceID, templateID, params)
+          .then((res) => {
+            document.getElementById("client-email").value;
+            document.getElementById("service").value;
+            document.getElementById("price").value;
+            console.log(res);
+            alert("your message sent successfuly");
+          })
+          .catch((err) => console.log(err));
+      }
+    </script>
     <script>
       window.theme = "default";
     </script>
@@ -189,6 +206,163 @@
     <script src="./assets/js/app.js"></script>
     <script src="./assets/vendor/dom-factory.js"></script>
     <script src="./assets/vendor/material-design-kit.js"></script>
+
+    <div
+      class="modal fade"
+      id="DeleteOrderModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="newClientModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newClientModalLabel">حذف الطلب</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>بريد الزبون</label>
+                <input
+                  required
+                  type="email"
+                  id="client-email"
+                  class="form-control"
+                  placeholder="بريد الزبون"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label>بريد العامل</label>
+                <input
+                  required
+                  type="email"
+                  id="worker-email"
+                  class="form-control"
+                  placeholder="بريد العامل"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label>الخدمة</label>
+                <input
+                  required
+                  type="email"
+                  id="service"
+                  class="form-control"
+                  placeholder="الخدمة"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary border"
+              data-dismiss="modal"
+            >
+              <i data-feather="x" class="md-18 align-middle"></i>
+              <span class="align-middle">إغلاق</span>
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-primary border"
+              id="addbtn2"
+            >
+              <i data-feather="delete" class="md-18 align-middle"></i>
+              <span class="align-middle">حذف</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="Send"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="newClientModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newClientModalLabel">إرسال الفاتورة</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group col-md-6">
+              <label>بريد الزبون</label>
+              <input
+                required
+                type="email"
+                name="client-email"
+                id="client-email"
+                class="form-control"
+                placeholder="بريد الزبون"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label>الخدمة</label>
+              <input
+                required
+                type="text"
+                name="service"
+                id="service"
+                class="form-control"
+                placeholder="الخدمة"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label>السعر</label>
+              <input
+                required
+                type="number"
+                name="price"
+                id="price"
+                class="form-control"
+                placeholder="السعر"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary border"
+              data-dismiss="modal"
+            >
+              <i data-feather="x" class="md-18 align-middle"></i>
+              <span class="align-middle">إغلاق</span>
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-primary border"
+              onclick="SendEmail()"
+            >
+              <i data-feather="send" class="md-18 align-middle"></i>
+              <span class="align-middle">إرسال</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
       (function () {
@@ -216,136 +390,18 @@
       })();
     </script>
 
-    <div
-      class="modal fade"
-      id="newClientModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="newClientModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="newClientModalLabel">إضافة طلب</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>اسم الزبون</label>
-                <input
-                  required
-                  type="text"
-                  class="form-control"
-                  id="client-name"
-                  placeholder="اسم الزبون"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label>البريد الإلكتروني للزبون</label>
-                <input
-                  required
-                  type="email"
-                  class="form-control"
-                  id="client-email"
-                  placeholder="البريد الإلكتروني للزبون"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label>رقم الزبون</label>
-                <input
-                  required
-                  type="number"
-                  class="form-control"
-                  id="client-number"
-                  placeholder="رقم الزبون"
-                />
-              </div>
-              <br />
-              <div class="form-group col-md-6">
-                <label>اسم التقني</label>
-                <input
-                  required
-                  type="text"
-                  id="worker-name"
-                  class="form-control"
-                  placeholder="اسم التقني"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label>البريد الإلكتروني للتقني</label>
-                <input
-                  required
-                  type="email"
-                  id="worker-email"
-                  class="form-control"
-                  placeholder="البريد الإلكتروني للتقني"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label>رقم التقني</label>
-                <input
-                  required
-                  type="text"
-                  id="worker-number"
-                  class="form-control"
-                  placeholder="رقم التقني"
-                />
-              </div>
-              <br />
-              <div class="form-group col-md-6">
-                <label>الخدمة</label>
-                <input
-                  required
-                  type="text"
-                  id="service"
-                  class="form-control"
-                  placeholder="الخدمة"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary border"
-              data-dismiss="modal"
-            >
-              <i data-feather="x" class="md-18 align-middle"></i>
-              <span class="align-middle">إغلاق</span>
-            </button>
-            <button
-              data-dismiss="modal"
-              type="button"
-              class="btn btn-primary border"
-              id="addbtn"
-            >
-              <i data-feather="plus" class="md-18 align-middle"></i>
-              <span class="align-middle">إضافة</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <script src="./assets/vendor/select2.full.min.js"></script>
 
     <script type="module">
       var tbody = document.getElementById("tbody1");
       function AddItemToTable(
-        client_name,
-        client_email,
-        client_number,
-        worker_name,
-        worker_email,
-        worker_number,
-        service
+        clinetName,
+        clinetEmail,
+        clinetNumber,
+        workerName,
+        workerEmail,
+        service,
+        price
       ) {
         let trow = document.createElement("tr");
         let td1 = document.createElement("td");
@@ -356,13 +412,13 @@
         let td6 = document.createElement("td");
         let td7 = document.createElement("td");
 
-        td1.innerHTML = client_name;
-        td3.innerHTML = client_email;
-        td2.innerHTML = client_number;
-        td4.innerHTML = worker_name;
-        td5.innerHTML = worker_email;
-        td6.innerHTML = worker_number;
-        td7.innerHTML = service;
+        td1.innerHTML = clinetName;
+        td2.innerHTML = clinetEmail;
+        td3.innerHTML = clinetNumber;
+        td4.innerHTML = workerName;
+        td5.innerHTML = workerEmail;
+        td6.innerHTML = service;
+        td7.innerHTML = price + " DA";
 
         trow.appendChild(td1);
         trow.appendChild(td2);
@@ -375,17 +431,17 @@
         tbody.appendChild(trow);
       }
 
-      function AddAllItemsToTable(order) {
+      function AddAllItemsToTable(user) {
         tbody.innerHTML = "";
-        order.forEach((element) => {
+        user.forEach((element) => {
           AddItemToTable(
             element.Client_Name,
             element.Client_Email,
             element.Client_Number,
             element.Worker_Name,
             element.Worker_Email,
-            element.Worker_Number,
-            element.Service
+            element.Service,
+            element.Price
           );
         });
       }
@@ -395,11 +451,10 @@
         getFirestore,
         doc,
         getDocs,
-        addDoc,
+        onSnapshot,
+        deleteDoc,
         query,
         where,
-        deleteDoc,
-        onSnapshot,
         collection,
       } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js";
 
@@ -418,73 +473,10 @@
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
 
-      let ClientNameBox = document.getElementById("client-name");
-      let ClientEmailBox = document.getElementById("client-email");
-      let ClientNumberBox = document.getElementById("client-number");
-      let WorkerNameBox = document.getElementById("worker-name");
-      let WorkerEmailBox = document.getElementById("worker-email");
-      let WorkerNumberBox = document.getElementById("worker-number");
-      let ServiceBox = document.getElementById("service");
-
-      let Addbtn = document.getElementById("addbtn");
-      function deleteOrdersWithCriteria() {
-        return new Promise(async (resolve, reject) => {
-          try {
-            const clientEmail = document.getElementById("client-email").value;
-            const clientName = document.getElementById("client-name").value;
-            const clientNumber = document.getElementById("client-number").value;
-            const service = document.getElementById("service").value;
-
-            const ordersRef = collection(db, "new");
-            const q = query(
-              ordersRef,
-              where("CLIENT_EMAIL", "==", clientEmail),
-              where("CLIENT_NAME", "==", clientName),
-              where("SERVICE", "==", service),
-              where("CLIENT_NUMBER", "==", clientNumber)
-            );
-            const snapshot = await getDocs(q);
-
-            snapshot.forEach(async (doc) => {
-              await deleteDoc(doc.ref);
-              console.log(`Document with ID ${doc.id} deleted successfully.`);
-            });
-
-            resolve();
-          } catch (error) {
-            console.log("Error deleting orders:", error);
-            reject(error);
-          }
-        });
-      }
-
-      async function AddDocument_AutoID() {
-        var ref = collection(db, "orders");
-        deleteOrdersWithCriteria();
-        const docRef = await addDoc(ref, {
-          Client_Name: ClientNameBox.value,
-          Client_Email: ClientEmailBox.value,
-          Client_Number: ClientNumberBox.value,
-          Worker_Name: WorkerNameBox.value,
-          Worker_Email: WorkerEmailBox.value,
-          Worker_Number: WorkerNumberBox.value,
-          Service: ServiceBox.value,
-          Price: null,
-        })
-          .then(() => {
-            alert("Data added successfully.");
-            window.location.reload();
-          })
-          .catch((error) => {
-            alert("Unsuccessfull opertaion, Error " + error);
-          });
-      }
-      Addbtn.addEventListener("click", AddDocument_AutoID);
-
       async function GetAllDataOnce() {
         try {
           const ordersRef = collection(db, "orders");
-          const q = query(ordersRef, where("Price", "==", null));
+          const q = query(ordersRef, where("Price", "<=", 200));
           const snapshot = await getDocs(q);
           const orders = [];
 
@@ -497,6 +489,43 @@
           return [];
         }
       }
+      let Client_Email = document.getElementById("client-email").value;
+      let Worker_Email = document.getElementById("worker-email").value;
+      let Service = document.getElementById("service").value;
+      let Addbtn2 = document.getElementById("addbtn2");
+
+      function deleteOrdersWithCriteria() {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const clientEmail = document.getElementById("client-email").value;
+            const workerEmail = document.getElementById("worker-email").value;
+            const service = document.getElementById("service").value;
+
+            const ordersRef = collection(db, "orders");
+            const q = query(
+              ordersRef,
+              where("Client_Email", "==", clientEmail),
+              where("Worker_Email", "==", workerEmail),
+              where("Service", "==", service)
+            );
+            const snapshot = await getDocs(q);
+
+            snapshot.forEach(async (doc) => {
+              await deleteDoc(doc.ref);
+              console.log(`Document with ID ${doc.id} deleted successfully.`);
+            });
+
+            alert("Data added successfully.");
+            window.location.reload();
+            resolve();
+          } catch (error) {
+            console.log("Error deleting orders:", error);
+            reject(error);
+          }
+        });
+      }
+
+      Addbtn2.addEventListener("click", deleteOrdersWithCriteria);
 
       window.onload = GetAllDataOnce;
     </script>
